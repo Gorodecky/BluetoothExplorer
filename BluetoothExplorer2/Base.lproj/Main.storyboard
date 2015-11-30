@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EYV-20-be0">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Bluetooth-->
+        <scene sceneID="dAb-Hm-BaG">
+            <objects>
+                <tableViewController id="IEL-Ds-0Tw" customClass="ViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fz9-nG-eLS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6Zt-Ml-oR5">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Zt-Ml-oR5" id="eQU-cz-qnF">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IEL-Ds-0Tw" id="hEs-dd-3Ne"/>
+                            <outlet property="delegate" destination="IEL-Ds-0Tw" id="AxZ-vT-ejm"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Bluetooth" id="Y19-jT-S80">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6tM-c1-06A">
+                            <connections>
+                                <action selector="refreshButton:" destination="IEL-Ds-0Tw" id="4jV-wf-eN6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47P-Py-afE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="433" y="-10"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="efY-w8-5JM">
+            <objects>
+                <navigationController id="EYV-20-be0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EHE-5W-dmE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="IEL-Ds-0Tw" kind="relationship" relationship="rootViewController" id="MqD-Jg-vJy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="klA-Jm-paE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255" y="-10"/>
+        </scene>
+    </scenes>
+</document>
