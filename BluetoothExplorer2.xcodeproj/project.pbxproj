@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D52009C31C0C82D9003ADDF0 /* TSBLEManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D52009C21C0C82D9003ADDF0 /* TSBLEManager.m */; };
 		D534880B1C09E90900268519 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D534880A1C09E90900268519 /* main.m */; };
 		D534880E1C09E90900268519 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D534880D1C09E90900268519 /* AppDelegate.m */; };
 		D53488111C09E90900268519 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53488101C09E90900268519 /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D52009C11C0C82D9003ADDF0 /* TSBLEManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSBLEManager.h; sourceTree = "<group>"; };
+		D52009C21C0C82D9003ADDF0 /* TSBLEManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSBLEManager.m; sourceTree = "<group>"; };
 		D53488051C09E90900268519 /* BluetoothExplorer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothExplorer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53488091C09E90900268519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D534880A1C09E90900268519 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				D534880D1C09E90900268519 /* AppDelegate.m */,
 				D534880F1C09E90900268519 /* ViewController.h */,
 				D53488101C09E90900268519 /* ViewController.m */,
+				D52009C11C0C82D9003ADDF0 /* TSBLEManager.h */,
+				D52009C21C0C82D9003ADDF0 /* TSBLEManager.m */,
 				D53488121C09E90900268519 /* Main.storyboard */,
 				D53488151C09E90900268519 /* Images.xcassets */,
 				D53488171C09E90900268519 /* LaunchScreen.xib */,
@@ -234,6 +239,7 @@
 			files = (
 				D53488111C09E90900268519 /* ViewController.m in Sources */,
 				D5FDEF361C0B64AA006C901B /* DeviceHelper.m in Sources */,
+				D52009C31C0C82D9003ADDF0 /* TSBLEManager.m in Sources */,
 				D534880E1C09E90900268519 /* AppDelegate.m in Sources */,
 				D534880B1C09E90900268519 /* main.m in Sources */,
 			);

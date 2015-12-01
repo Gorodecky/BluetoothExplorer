@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ViewController : UITableViewController
+@interface ViewController : UIViewController
 
 - (IBAction)refreshButton:(id)sender;
 

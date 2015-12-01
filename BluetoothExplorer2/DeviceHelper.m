@@ -31,7 +31,6 @@
     return sharedInstance;
 }
 
-
 - (void) procesDevicesArray:(NSArray*)listOfDevices {
     
     [otherDevices removeAllObjects];
@@ -39,37 +38,36 @@
     //CBPeripheral
     
     for (int i = 0; i < listOfDevices.count; i++) {
-        
-        CBPeripheral *peri = [listOfDevices objectAtIndex:i];
+        NSString *device = [listOfDevices objectAtIndex:i];
+       
         BOOL addDeviceToFavourite = NO;
         
         for (int j = 0; j < favoritsNameDevices.count; j++) {
+            
             NSString *deviceName = [favoritsNameDevices objectAtIndex:j];
-            if ([peri.name isEqualToString:deviceName])
-            {
+            
+            if ([device isEqualToString:deviceName]) {
+                
                 addDeviceToFavourite = YES;
                 break;
             }
         }
         
-        if (addDeviceToFavourite == YES)
-        {
-            if (favoritDevices == nil)
-            {
+        if (addDeviceToFavourite == YES) {
+            
+            if (favoritDevices == nil) {
                 favoritDevices = [NSMutableArray array];
             }
             
-            [favoritDevices addObject:peri.name];
-        }
-        else
-        {
+            [favoritDevices addObject:device];
+        } else {
+            
             if (otherDevices == nil) {
                 
                 otherDevices = [NSMutableArray array];
-
             }
             
-            [otherDevices addObject:peri.name];
+            [otherDevices addObject:device];
         }
     }
 }

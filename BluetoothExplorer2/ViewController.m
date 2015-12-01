@@ -8,10 +8,14 @@
 
 #import "ViewController.h"
 #import "DeviceHelper.h"
+#import "TSBLEManager.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, TSBLEManagerDelegate>
 
 @property (strong, nonatomic) NSArray* namesArray; // масив даних
+@property (strong, nonatomic) IBOutlet UITableView* tableView;
+@property (strong, nonatomic) IBOutlet UIView* loadingView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView* activityIndicator;
 
 @end
 
@@ -19,7 +23,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [[TSBLEManager sharedInstance] setDelegate:self];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,6 +38,17 @@
 }
 
 
+- (void)stopDevicesSearching{
+    if ([_activityIndicator isAnimating] == YES)
+    {
+        [self.activityIndicator stopAnimating];
+        [self.view sendSubviewToBack:_loadingView];
+        [self.loadingView setHidden:YES];
+    }
+
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 
@@ -35,6 +56,7 @@
     
     return 2;
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0 ) {
         return @"Favorite devices";
@@ -43,26 +65,23 @@
     }
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSInteger result = 0;
     
-    if ([tableView isEqual:self.view]) {
-        switch (section) {
-            case 0: {
-                result = [DeviceHelper sharedInstance].favoritDevicesList.count; // count від масиву
-                break;
-            }
-                
-            case 1:{
-                result = [DeviceHelper sharedInstance].otherDevicesList.count; // ризниця між двома масивами
-                break;
-            }
-                
-            default:
-                break;
+    switch (section) {
+        case 0: {
+            result = [DeviceHelper sharedInstance].favoritDevicesList.count; // count від масиву
+            break;
         }
+            
+        case 1:{
+            result = [DeviceHelper sharedInstance].otherDevicesList.count; // ризниця між двома масивами
+            break;
+        }
+            
+        default:
+            break;
     }
     
     return result;
@@ -84,8 +103,42 @@
     }
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        [[DeviceHelper sharedInstance] moveDevicesFromFavoritsToOthers:indexPath.row];
+    }
+    else
+    {
+        [[DeviceHelper sharedInstance] moveDevicesFromOtherToFavorits:indexPath.row];
+    }
+    
+    [self.tableView reloadData];
+}
+
+
 // Кнопка перезавантаження
 - (IBAction)refreshButton:(id)sender {
     
+    if ([[TSBLEManager sharedInstance] searchInProgress] == NO) {
+        if ([[TSBLEManager sharedInstance] searchDevices] == YES) {
+            [self showLoadingView];
+        }
+        else{
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Cannot load devices" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    } else {
+        [self showLoadingView];
+    }
 }
+
+- (void) showLoadingView {
+    [self.activityIndicator startAnimating];
+    [self.view bringSubviewToFront:_loadingView];
+    [self.loadingView setHidden:NO];
+}
+
 @end
